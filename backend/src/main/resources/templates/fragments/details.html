@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="content (lang)">
+    <h3 th:if="${lang == 'fr'}"> Ce que vous allez apprendre </h3>
+    <h3 th:if="${lang == 'en'}"> What you will learn </h3>
+    <ul th:each="item: ${features}">
+        <li th:text="${item}" />
+    </ul>
+</div>
+</body>

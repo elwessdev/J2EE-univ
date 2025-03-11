@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>My Spring Boot App</title>
+    <link rel="stylesheet" href="/style/styles.css">
+</head>
+<body>
+    <header>
+        <img th:class="cover" src="/img/logo.png" alt="Logo image">
+    </header>
+    <section>
+        <h2> Apprendre Spring Boot 3 avec des projets réels </h2>
+
+        <div th:if="${showDetails}">
+            <h3> Ce que vous allez apprendre </h3>
+            <ul th:each="item: ${features}">
+                <li th:text="${item}" />
+            </ul>
+        </div>
+
+        <a href="https://spring.io/projects/spring-boot#learn"
+           target="_blank"> détails </a>
+        <br />
+
+        <img th:class="cover" src="/img/image.png" alt="Spring Boot">
+
+        <div th:if="${showDetails}">
+            <div th:replace="~{fragments/details.html :: content('en')}" />
+        </div>
+    </section>
+    <footer>
+        <p th:class="light-text"> ISET TOZEUR </p>
+    </footer>
+</body>
+</html>

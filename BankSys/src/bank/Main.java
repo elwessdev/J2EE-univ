@@ -1,8 +1,9 @@
 package bank;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         Bank bank = new Bank();
 
@@ -13,7 +14,8 @@ public class Main {
             System.out.println("3. Withdraw");
             System.out.println("4. Check Balance");
             System.out.println("5. Delete Account");
-            System.out.println("6. Exit");
+            System.out.println("6. Show all accounts (admin only)");
+            System.out.println("7. Exit");
             System.out.print("-> Choose an option: ");
 
             int choice = scanner.nextInt();
@@ -104,6 +106,15 @@ public class Main {
                     }
                     break;
                 case 6:
+                    System.out.print("Enter Admin username: ");
+                    scanner.nextLine();
+                    String adminName = scanner.nextLine();
+                    System.out.print("Enter Admin Password: ");
+                    String adminPass = scanner.nextLine();
+                    Admin admin = new Admin(adminName,adminPass);
+                    admin.allAccounts();
+                    break;
+                case 7:
                     System.out.println("\uD83D\uDED1 Exiting Bank System. Goodbye!");
                     scanner.close();
                     return;
