@@ -1,0 +1,71 @@
+
+:root {
+    --background-color: #fff;
+    --text-color: #212529;
+    --card-bg: #fff;
+    --border-color: #dee2e6;
+    --input-bg: #fff;
+    --input-color: #212529;
+    --table-stripe: rgba(0, 0, 0, 0.05);
+    --hover-bg: rgba(0, 0, 0, 0.075);
+}
+
+[data-theme="dark"] {
+    --background-color: #222;
+    --text-color: #f8f9fa;
+    --card-bg: #333;
+    --border-color: #444;
+    --input-bg: #333;
+    --input-color: #f8f9fa;
+    --table-stripe: rgba(255, 255, 255, 0.05);
+    --hover-bg: rgba(255, 255, 255, 0.075);
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card, .alert, .modal-content {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.form-control, .form-select {
+    background-color: var(--input-bg);
+    color: var(--input-color);
+    border-color: var(--border-color);
+}
+
+.table {
+    color: var(--text-color);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--table-stripe);
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--hover-bg);
+}
+
+.dark-icon, .light-icon {
+    font-size: 1.25rem;
+}
+
+[data-theme="dark"] .dark-icon {
+    display: none;
+}
+
+[data-theme="dark"] .light-icon {
+    display: inline-block !important;
+}
+
+[data-theme="light"] .dark-icon {
+    display: inline-block;
+}
+
+[data-theme="light"] .light-icon {
+    display: none !important;
+}

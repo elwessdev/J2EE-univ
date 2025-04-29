@@ -1,10 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8" />
+    <title>Spring MVC with Thymeleaf</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h1 {
+            color: #3498db;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="container">
+    <h1>Home Page</h1>
+    <p th:text="${message}">Default message</p>
+
+    <h2>Spring MVC with Thymeleaf Demo</h2>
+    <p>
+        This application demonstrates the basic concepts of Spring MVC and
+        Thymeleaf.
+    </p>
+
+    <h2>Distribution Table</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Major</th>
+            <th>Number of Students</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="major : ${majors}">
+            <td th:text="${major.key}">Computer Science</td>
+            <td th:text="${major.value}">10</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <div>
+        <a th:href="@{/students/list}" class="btn">View Students</a>
+        <a th:href="@{/students/register}" class="btn">Register Student</a>
+    </div>
+</div>
 </body>
 </html>

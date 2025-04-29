@@ -1,0 +1,26 @@
+/* Custom styles for Student Portal */
+
+body {
+    padding-bottom: 60px;
+}
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
+}
+
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    margin-bottom: 1.5rem;
+}
+
+.card-title {
+    color: #495057;
+    font-weight: 600;
+}
+
+.footer {
+    margin-top: auto;
+}

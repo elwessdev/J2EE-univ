@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        th:replace="fragments/layout :: layout(~{::title}, ~{::main})"
+>
+<head>
+  <title th:text="${'Student - ' + student.name}">Student Details</title>
+</head>
+<body>
+<main>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Student Details</h2>
+    <div>
+      <a th:href="@{/students}" class="btn btn-secondary">Back to List</a>
+      <a
+              th:href="@{/students/edit/{id}(id=${student.id})}"
+              class="btn btn-warning"
+      >Edit</a
+      >
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h4 th:text="${student.name}" class="mb-0">John Doe</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>ID:</strong> <span th:text="${student.id}">1</span></p>
+          <p>
+            <strong>Name:</strong>
+            <span th:text="${student.name}">John Doe</span>
+          </p>
+          <p>
+            <strong>Age:</strong> <span th:text="${student.age}">21</span>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <strong>Email:</strong>
+            <span th:text="${student.email}">john@example.com</span>
+          </p>
+          <p>
+            <strong>Course:</strong>
+            <span th:text="${student.course}">Computer Science</span>
+          </p>
+          <p>
+            <strong>Student ID:</strong>
+            <span th:text="${student.studentId}">CS123456</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

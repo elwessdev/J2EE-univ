@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        th:replace="fragments/layout :: layout(~{::title}, ~{::main})"
+>
+<head>
+    <title>Home - Student Portal</title>
+</head>
+<body>
+<main>
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Student Portal</h1>
+        <p class="lead">A platform to manage student information.</p>
+        <hr class="my-4" />
+        <p>You can view, add, edit, and delete student records.</p>
+        <a class="btn btn-primary btn-lg" th:href="@{/students}" role="button"
+        >View Students</a
+        >
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total Students</h5>
+                    <p class="card-text display-4" th:text="${students.size()}">0</p>
+                    <a th:href="@{/students}" class="card-link">View All</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Quick Actions</h5>
+                    <a th:href="@{/students/new}" class="btn btn-success"
+                    >Add New Student</a
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recent Students</h5>
+                    <ul class="list-group list-group-flush">
+                        <li
+                                class="list-group-item"
+                                th:each="student, stat : ${students}"
+                                th:if="${stat.index < 3}"
+                        >
+                            <a
+                                    th:href="@{/students/{id}(id=${student.id})}"
+                                    th:text="${student.name}"
+                            >Student Name</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,10 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8" />
+    <title>Student List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        h1 {
+            color: #3498db;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .empty-message {
+            font-style: italic;
+            color: #777;
+        }
+        .filter-form {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #eee;
+        }
+        .filter-form input, .filter-form select {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .filter-form button, .filter-form a {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 60px;
+            height: 30px;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+        }
+        .form{
+            display: flex;
+            gap: 5px;
+        }
+        .filter-form button:hover {
+            background-color: #2980b9;
+        }
+    </style>
 </head>
 <body>
-$END$
+<div class="container">
+    <h1>Student List</h1>
+
+    <a th:href="@{/students/register}" class="btn">Register New Student</a>
+
+    <div class="filter-form">
+        <form th:action="@{/students/listFilter}" method="get" class="form">
+            <input type="text" name="name" th:value="${param.name}" placeholder="Filter by name">
+            <input type="text" name="major" th:value="${param.major}" placeholder="Filter by major">
+            <button type="submit">Filter</button>
+            <a th:href="@{/students/list}">Clear</a>
+        </form>
+    </div>
+
+    <div th:if="${students.empty}" class="empty-message">
+        <p>No students registered yet.</p>
+    </div>
+
+    <table th:unless="${students.empty}">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Major</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.name}">John Doe</td>
+                <td th:text="${student.email}">john@example.com</td>
+                <td th:text="${student.major}">Computer Science</td>
+                <td>
+                    <a th:href="@{'/students/edit/' + ${student.getId()}}">Edit</a>
+                    <a th:href="@{'/students/delete/' + ${student.getId()}}">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <a th:href="@{/}" class="btn">Back to Home</a>
+    </p>
+</div>
 </body>
 </html>

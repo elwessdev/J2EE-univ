@@ -2,6 +2,7 @@ package com.example.studentapi.controller;
 
 import com.example.studentapi.model.Student;
 import com.example.studentapi.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class StudentController {
 
     // CREATE - HTTP POST
     @PostMapping
-    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+    public ResponseEntity<Student> createStudent(@Valid @RequestBody Student student) {
         Student savedStudent = studentService.saveStudent(student);
         return new ResponseEntity<>(savedStudent, HttpStatus.CREATED);
     }
@@ -39,7 +40,7 @@ public class StudentController {
 
     // UPDATE - HTTP PUT
     @PutMapping("/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
+    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @Valid @RequestBody Student student) {
         Student updatedStudent = studentService.updateStudent(id, student);
         return new ResponseEntity<>(updatedStudent, HttpStatus.OK);
     }

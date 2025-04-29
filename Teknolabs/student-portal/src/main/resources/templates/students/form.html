@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        th:replace="fragments/layout :: layout(~{::title}, ~{::main})"
+>
+<head>
+  <title th:text="${student.id == null ? 'Add Student' : 'Edit Student'}">
+    Student Form
+  </title>
+</head>
+<body>
+<main>
+  <h2 th:text="${student.id == null ? 'Add New Student' : 'Edit Student'}">
+    Student Form
+  </h2>
+  <a th:href="@{/students}" class="btn btn-secondary mb-3">Back to List</a>
+
+  <div class="card">
+    <div class="card-body">
+      <form
+              th:action="@{/students/save}"
+              th:object="${student}"
+              method="post"
+      >
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input
+                  type="text"
+                  class="form-control"
+                  th:field="*{name}"
+                  id="name"
+          />
+          <div
+                  class="text-danger"
+                  th:if="${#fields.hasErrors('name')}"
+                  th:errors="*{name}"
+          >
+            Name Error
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="age" class="form-label">Age</label>
+          <input
+                  type="number"
+                  class="form-control"
+                  th:field="*{age}"
+                  id="age"
+          />
+          <div
+                  class="text-danger"
+                  th:if="${#fields.hasErrors('age')}"
+                  th:errors="*{age}"
+          >
+            Age Error
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+                  type="email"
+                  class="form-control"
+                  th:field="*{email}"
+                  id="email"
+          />
+          <div
+                  class="text-danger"
+                  th:if="${#fields.hasErrors('email')}"
+                  th:errors="*{email}"
+          >
+            Email Error
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="course" class="form-label">Course</label>
+          <select class="form-select" th:field="*{course}" id="course">
+            <option value="">Select a course</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Mathematics">Mathematics</option>
+            <option value="Physics">Physics</option>
+            <option value="Chemistry">Chemistry</option>
+            <option value="Biology">Biology</option>
+            <option value="Engineering">Engineering</option>
+          </select>
+          <div
+                  class="text-danger"
+                  th:if="${#fields.hasErrors('course')}"
+                  th:errors="*{course}"
+          >
+            Course Error
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="studentId" class="form-label">Student ID</label>
+          <input
+                  type="text"
+                  class="form-control"
+                  th:field="*{studentId}"
+                  id="studentId"
+                  placeholder="e.g., CS123456"
+          />
+          <div class="text-small text-muted">
+            Must be 8 characters with uppercase letters and numbers only
+          </div>
+          <div
+                  class="text-danger"
+                  th:if="${#fields.hasErrors('studentId')}"
+                  th:errors="*{studentId}"
+          >
+            Student ID Error
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a th:href="@{/students}" class="btn btn-outline-secondary"
+        >Cancel</a
+        >
+      </form>
+    </div>
+  </div>
+</main>
+</body>
+</html>
