@@ -15,6 +15,8 @@ import java.util.Optional;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
+//    void delete(Long id);
+
     // Find book by ISBN
     Optional<Book> findByIsbn(String isbn);
 
