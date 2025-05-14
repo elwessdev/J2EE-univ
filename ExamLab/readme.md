@@ -22,17 +22,17 @@ A microservice-based web application to manage books, built with **Spring Boot**
 
 ## 📸 Screenshots
 
-- 📅 Jira board
-  ![Jira board](screenshots/jira.png)
+### 📅 Jira board
+![Jira board](screenshots/jira.png)
 
 
-- 🔗 Project interface
+### 🔗 Project interface
 ![Project Interface](screenshots/view.png)
 
 
-- 🧠 Redis cache view
+### 🧠 Redis cache view
 ![Redis cache](screenshots/redis.png)
 
 
-- 📘 Swagger UI
+### 📘 Swagger UI
 ![Swagger UI](screenshots/swagger.png)
