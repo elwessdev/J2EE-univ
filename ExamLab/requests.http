@@ -1,0 +1,61 @@
+### Variables
+@baseUrl = http://localhost:8080/api/books
+@contentType = application/json
+
+### Get all books
+GET {{baseUrl}}
+Accept: {{contentType}}
+
+### Add a new book
+POST {{baseUrl}}
+Content-Type: {{contentType}}
+
+{
+  "isbn": "978-1234567890",
+  "title": "Spring Boot in Action",
+  "author": "Craig Walls"
+}
+
+### Get a specific book by ISBN
+GET {{baseUrl}}/978-1234567890
+Accept: {{contentType}}
+
+### Update a book by ISBN
+PUT {{baseUrl}}/978-1234567890
+Content-Type: {{contentType}}
+
+{
+  "isbn": "978-1234567890",
+  "title": "Spring Boot in Action (2nd Edition)",
+  "author": "Craig Walls"
+}
+
+### Delete a book by ISBN
+DELETE {{baseUrl}}/978-1234567890
+
+### Add another book
+POST {{baseUrl}}
+Content-Type: {{contentType}}
+
+{
+  "isbn": "978-0987654321",
+  "title": "Effective Java",
+  "author": "Joshua Bloch"
+}
+
+### Get a non-existent book (should return 404 with error message)
+GET {{baseUrl}}/non-existent-isbn
+Accept: {{contentType}}
+
+### Update a non-existent book (should return 404 with error message)
+PUT {{baseUrl}}/non-existent-isbn
+Content-Type: {{contentType}}
+
+{
+  "isbn": "non-existent-isbn",
+  "title": "This Book Doesn't Exist",
+  "author": "Unknown Author"
+}
+
+### Delete a non-existent book (should return 404 with error message)
+DELETE {{baseUrl}}/non-existent-isbn
