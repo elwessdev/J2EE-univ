@@ -1,0 +1,23 @@
+### Get All Tasks
+GET http://localhost:8080/api/v1/todo
+
+### Add Task
+POST http://localhost:8080/api/v1/todo
+Content-Type: application/json
+
+{
+  "description": "test todo",
+  "isCompleted": false
+}
+
+### Edit Task
+PUT localhost:8080/api/v1/todo/1
+Content-Type: application/json
+
+{
+  "description": "edited 1",
+  "isCompleted": true
+}
+
+### Delete Task
+DELETE localhost:8080/api/v1/todo/1

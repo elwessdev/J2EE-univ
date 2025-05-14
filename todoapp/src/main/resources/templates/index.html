@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 20px;
+            padding: 0;
+        }
+
+        .todo-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            color: #333333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .todo-item {
+            font-size: 18px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .complete-button, .delete-button {
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .complete-button {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="todo-container">
+    <h1>Todo List</h1>
+    <ul>
+        <li th:each="task : ${tasks}">
+            <span class="todo-item" th:text="${task.description}"></span>
+            <div class="buttons">
+                <button class="complete-button"
+                        onclick="fetch('/complete/' + this.getAttribute('data-id'), {method: 'POST'})">Complete
+                </button>
+                <button class="delete-button"
+                        onclick="fetch('/delete/' + this.getAttribute('data-id'), {method: 'DELETE'})">Delete
+                </button>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
